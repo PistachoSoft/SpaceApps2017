@@ -6,6 +6,9 @@ DATABASE = peewee.SqliteDatabase("/tmp/db")
 
 class Flight(peewee.Model):
     coordinates = peewee.TextField(null=True, unique=False)
+    type = peewee.TextField(null=True, unique=False,
+                            choices=(("nasa", "nasa"),
+                                     ("commercial", "commercial")))
 
     def to_geojson(self):
         return {

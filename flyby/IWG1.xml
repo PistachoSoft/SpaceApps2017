@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns="urn:xmlns:reveal"><label>IWG1</label><info>IWGADTS IWG1 Format data</info><rate>1.000000</rate><host>nasdat-005</host><start>30Aug2016-0923</start>
+<header>IWG1,</header>
+<footer>CRLF</footer>
+<delim>,</delim>
+<skipmissing/>
+  <parameter id="System_Timestamp"><type>time</type><format>%Y-%m-%dT%H:%M:%S.xxx</format><label>System Timestamp</label><info xmlns="urn:xmlns:reveal">UTC system timestamp (Unix epoch)</info></parameter>
+  <parameter xml:id="Latitude"><format>%1.9f</format><label>label</label></parameter>
+  <parameter xml:id="Longitude"><format>%1.9f</format><label>label</label></parameter>
+  <parameter xml:id="GPS_Altitude-MSL"><format>%1.1f</format><label>GPS Altitude MSL</label><info xmlns="urn:xmlns:reveal">LTN-2001 GPS Altitude MSL (m)</info></parameter>
+  <parameter xml:id="GPS_Altitude"><format>%1.1f</format><label>GPS Altitude</label><info xmlns="urn:xmlns:reveal">LTN-92 GPS Altitude (meters)</info></parameter>
+  <parameter xml:id="Pressure_Altitude"><format>%1.1f</format><label>label</label></parameter>
+  <parameter xml:id="RADAR_Altitude"><format>%1.1f</format><label>RADAR Altitude</label><info xmlns="urn:xmlns:reveal">Data is not available (ft)</info></parameter>
+  <parameter xml:id="Ground_Speed"><format>%1.1f</format><label>Ground Speed</label><info xmlns="urn:xmlns:reveal">LTN-92 Ground Speed (m/sec)</info></parameter>
+  <parameter xml:id="True_Air_Speed"><format>%1.1f</format><label>True Air Speed</label><info xmlns="urn:xmlns:reveal">ER-2 True Air Speed (m/sec)</info></parameter>
+  <parameter xml:id="Indicated_Air_Speed"><format>%1.1f</format><label>Indicated Air Speed (m/s)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter xml:id="Mach_Number"><format>%1.3f</format><label>Mach Number</label><info xmlns="urn:xmlns:reveal">ER-2 Mach Number</info></parameter>
+  <parameter xml:id="Vertical_Speed"><format>%1.1f</format><label>LTN-92 Vertical Speed - Inertial</label><info xmlns="urn:xmlns:reveal">LTN-92 EGI Vertical Speed - Inertial (+/-32768 feet/min)</info></parameter>
+  <parameter xml:id="True_Heading"><format>%1.2f</format><label>LTN-92 True Heading Hybrid</label><info xmlns="urn:xmlns:reveal">LTN-92 EGI True Heading - Hybrid (+/-180 deg)</info></parameter>
+  <parameter xml:id="Track_Angle"><format>%1.1f</format><label>label</label></parameter>
+  <parameter xml:id="Drift_Angle"><format>%1.1f</format><label>LTN-92 Drift Angle</label><info xmlns="urn:xmlns:reveal">LTN-92 EGI Drift Angle (+/-180 deg)</info></parameter>
+  <parameter xml:id="Pitch_Angle"><format>%1.2f</format><label>LTN-92 Pitch Angle</label><info xmlns="urn:xmlns:reveal">LTN-92 EGI Pitch Angle (+/-180 deg)</info></parameter>
+  <parameter xml:id="Roll_Angle"><format>%1.2f</format><label>LTN-92 Roll Angle</label><info xmlns="urn:xmlns:reveal">LTN-92 EGI Roll Angle (+/-180 deg)</info></parameter>
+  <parameter xml:id="Slip_Angle"><format>%1.1f</format><label>Slip Angle</label><info xmlns="urn:xmlns:reveal">Data is not available (deg)</info></parameter>
+  <parameter xml:id="Attack_Angle"><format>%1.1f</format><label>Angle of Attack (deg)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter xml:id="Static_Air_Temp"><format>%1.1f</format><label>Static Air Temp</label><info xmlns="urn:xmlns:reveal">ER-2 Static Air Temp (degC)</info></parameter>
+  <parameter xml:id="Dew_Point"><format>%1.1f</format><label>Dew Point</label><info xmlns="urn:xmlns:reveal">Data is not available (C)</info></parameter>
+  <parameter xml:id="Total_Air_Temp"><format>%1.1f</format><label>Total Air Temp (C)</label><info xmlns="urn:xmlns:reveal">ADSU Total Air Temp calculated (deg C)</info></parameter>
+  <parameter xml:id="Static_Pressure"><format>%1.1f</format><label>Static Pressure</label><info xmlns="urn:xmlns:reveal">ER-2 Static Air Pressure (mbar)</info></parameter>
+  <parameter xml:id="Dynamic_Pressure"><format>%1.1f</format><label>Dynamic Pressure</label><info xmlns="urn:xmlns:reveal">ER-2 Dynamic Air Pressure (mbar)</info></parameter>
+  <parameter xml:id="Cabin_Pressure"><format>%1.1f</format><label>Cabin Pressure</label><info xmlns="urn:xmlns:reveal">NASDAT Cabin Pressure Transducer (mbar)</info></parameter>
+  <parameter xml:id="Wind_Speed"><format>%1.1f</format><label>Wind Speed</label><info xmlns="urn:xmlns:reveal">LTN-92 Wind Speed (0-132 m/sec)</info></parameter>
+  <parameter xml:id="Wind_Direction"><format>%1.1f</format><label>label</label></parameter>
+  <parameter xml:id="Vert_Wind_Speed"><format>%1.1f</format><label>Vertical Wind Speed</label><info xmlns="urn:xmlns:reveal">Data is not available (m/sec)</info></parameter>
+  <parameter xml:id="Solar_Zenith_Angle"><format>%1.1f</format><label>Solar Zenith Angle</label><info xmlns="urn:xmlns:reveal">Solar Zenith Angle (deg)</info></parameter>
+  <parameter xml:id="Aircraft_Sun_Elevation"><format>%1.1f</format><label>Aircraft Sun Elevation</label><info xmlns="urn:xmlns:reveal">Sun Elevation in Aircraft Reference Frame (deg)</info></parameter>
+  <parameter xml:id="Sun_Azimuth"><format>%1.1f</format><label>Solar Azimuth Angle</label><info xmlns="urn:xmlns:reveal">Solar Azimuth Angle (deg)</info></parameter>
+  <parameter xml:id="Aircraft_Sun_Azimuth"><format>%1.1f</format><label>Aircraft Sun Azimuth</label><info xmlns="urn:xmlns:reveal">Sun Azimuth in Aircraft Reference Frame (deg)</info></parameter>
+</config>

@@ -8,6 +8,16 @@ from robobrowser import RoboBrowser
 
 warnings.simplefilter('ignore')
 
+KEYS = ['System_Timestamp',  'Latitude',  'Longitude',  'GPS_Altitude-MSL',
+        'GPS_Altitude',  'Pressure_Altitude',  'RADAR_Altitude',
+        'Ground_Speed',  'True_Air_Speed',  'Indicated_Air_Speed',
+        'Mach_Number',  'Vertical_Speed',  'True_Heading',  'Track_Angle',
+        'Drift_Angle',  'Pitch_Angle',  'Roll_Angle',  'Slip_Angle',
+        'Attack_Angle',  'Static_Air_Temp',  'Dew_Point',  'Total_Air_Temp',
+        'Static_Pressure',  'Dynamic_Pressure',  'Cabin_Pressure',
+        'Wind_Speed',  'Wind_Direction',  'Vert_Wind_Speed',
+        'Solar_Zenith_Angle',  'Aircraft_Sun_Elevation',  'Sun_Azimuth',
+        'Aircraft_Sun_Azimuth']
 
 class Expedition:
     def __init__(self, link):
@@ -29,21 +39,27 @@ class Expedition:
                 yield from self.recurse_directory(
                     "{}{}".format(directory, link), stopword)
 
+    @staticmethod
+    def parse_iwg(iwg):
+        self.browser.open(iwg)
+        sio = io.StringIO()
+        sio.write(self.browser.parsed.text)
+        sio.seek(0)
+        try:
+            yield list(csv.DictReader(sio, fieldnames=KEYS))
+        except Exception as err:
+            print("Error: " + err)
+
     @property
     def iwgs(self):
-        for iwg in self.recurse_directory(self.link, "IWG"):
-            self.browser.open(iwg)
-            sio = io.StringIO()
-            sio.write(self.browser.parsed.text)
-            sio.seek(0)
-            try:
-                yield list(csv.reader(sio))
-            except Exception as err:
-                print("Error: " + err)
+        return (parse_iwg(i) for i in self.recurse_directory(self.link, "IWG"))
 
     @property
     def kmls(self):
         pass
+
+    def videos(self):
+        yield from self.recurse_directory(self.link 'avi')
 
 
 class Campaign:

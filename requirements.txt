@@ -1,1 +1,4 @@
 requests
+peewee
+flask
+flask_potion

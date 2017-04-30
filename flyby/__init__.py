@@ -107,6 +107,10 @@ class PositionResource(ModelResource):
     def from_csv(self, data: fields.String()):
         return Position.from_csv(data)
 
+    @Route.GET('/count')
+    def count(self):
+        return Position.select().count()
+
     class Meta:
         # pylint: disable=missing-docstring
         model = Position

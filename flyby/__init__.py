@@ -131,6 +131,7 @@ class PositionResource(ModelResource):
     class Meta:
         # pylint: disable=missing-docstring
         model = Position
+        include_fields = ["id"]
 
 
 class SearchResource(ModelResource):
@@ -151,8 +152,8 @@ def run():
 
     if not Search.table_exists():
         Search.create_table()
-    app.config["POTION_DEFAULT_PER_PAGE"] = sys.maxsize
-    app.config["POTION_MAX_PER_PAGE"] = sys.maxsize
+    app.config["POTION_DEFAULT_PER_PAGE"] = 10000000
+    app.config["POTION_MAX_PER_PAGE"] = 10000000
 
     api = Api(app, default_manager=PeeweeManager)
     api.add_resource(PositionResource)

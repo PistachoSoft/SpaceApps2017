@@ -2,8 +2,6 @@
 
 # PistachoFlights
 
-¿Donde faltan datos de la nasa?
-
 ---
 
 # Problematica
@@ -46,9 +44,9 @@ interaccion con otros vuelos.
 
 # Objetivos conseguidos
 
-- Varias fuentes de datos abiertos (NASA, OpenFlights, OpenSKY)
+- Datos de NASA, OpenFlights y OpenSKY
 - API con fuentes de datos y posibilidad de comentar y modificar el mapa.
-- Modelo común para los datos, JSONSchema y GEOJson
+- Modelo común para los datos y GEOJson
 - Visualización de datos y mapa de calor
 - Importación de datos de usuario
 

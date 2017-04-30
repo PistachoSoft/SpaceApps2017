@@ -38,4 +38,21 @@ interaccion con otros vuelos.
 - Visual, pero útil
 - Anotaciones colaborativas, además de fuentes de datos
   (peticiones de datos, comentarios...)
+- Datos abiertos
++ Modelo de datos común para todas las fuentes
++ Formato GEOJson
 
+---
+
+# Objetivos conseguidos
+
+- Varias fuentes de datos abiertos (NASA, OpenFlights, OpenSKY)
+- API con fuentes de datos
+- Importación de datos de usuario
+- Modelo común para los datos
+- GEOJson
+- Visualización de datos y mapa de calor
+- Los usuarios pueden comentar y modificar el mapa de calor con la API abierta.
+- JSONSchema para normalización de datos
+
+![Captura](https://raw.githubusercontent.com/PistachoSoft/SpaceApps2017/develop/doc/screenshot.png)

@@ -23,6 +23,17 @@ LOG = logging.getLogger(__name__)
 LOG.setLevel(CONFIG['main'].get('loglevel', logging.DEBUG))
 
 
+class Search(peewee.Model):
+    """ Position """
+    # pylint: disable=too-few-public-methods
+    search = peewee.TextField()
+    comment = peewee.TextField()
+
+    class Meta:
+        # pylint: disable=missing-docstring, too-few-public-methods
+        database = DB
+
+
 class Position(peewee.Model):
     """ Position """
     # pylint: disable=too-few-public-methods
@@ -70,6 +81,14 @@ class PositionResource(ModelResource):
         model = Position
 
 
+class SearchResource(ModelResource):
+    """ Position APIResource """
+    # pylint: disable=too-few-public-methods
+    class Meta:
+        # pylint: disable=missing-docstring
+        model = Search
+
+
 def run():
     """ Main entry point """
     app = Flask(__name__)
@@ -77,6 +96,11 @@ def run():
     # pylint: disable=no-member
     if not Position.table_exists():
         Position.create_table()
+
+    if not Search.table_exists():
+        Search.create_table()
+
     api = Api(app, default_manager=PeeweeManager)
     api.add_resource(PositionResource)
+    api.add_resource(SearchResource)
     app.run(debug=True)

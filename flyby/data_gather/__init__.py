@@ -25,8 +25,12 @@ def nasa_to_flyby():
         # Manual link input.
         # We used this to priorize
         link = sys.argv[1]
+        if len(sys.argv) > 2:
+            name = sys.argv[2]
+
     for iwgs in nasa_flights.IWG(link):
-        name = iwgs.name
+        if not name:
+            name = iwgs.name
         for iwg in iwgs:
             if not iwg['Latitude']:
                 LOG.debug("Got empty iwg")

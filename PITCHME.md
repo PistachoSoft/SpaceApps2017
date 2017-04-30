@@ -9,15 +9,15 @@
 - Falta de visibilidad de las misiones airborne
 - Falta de accesibilidad a los datos
 - Dificultad de conversión e interpretación de datos
-
+- Dependencia del objetivo de la misión
 
 ---
 
 # Soluciones
 
-- CIENCIA CIUDADANA!
- - ¿Quien tiene acceso a esos datos?
-- Datos provistos por la población general
+- Ciencia ciudadana
+ - Colaboración con los investigadores responsables 
+- Datos provistos por ciudadanos
  - ¡DRONES!
 
 Los que mejor conocen esos datos son los investigadores asociados

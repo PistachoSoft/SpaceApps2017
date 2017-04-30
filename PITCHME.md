@@ -47,11 +47,10 @@ interaccion con otros vuelos.
 # Objetivos conseguidos
 
 - Varias fuentes de datos abiertos (NASA, OpenFlights, OpenSKY)
-- API con fuentes de datos
-- Importación de datos de usuario
+- API con fuentes de datos y posibilidad de comentar y modificar el mapa.
 - Modelo común para los datos, JSONSchema y GEOJson
 - Visualización de datos y mapa de calor
-- Los usuarios pueden comentar y modificar el mapa de calor con la API abierta.
+- Importación de datos de usuario
 
 ---
 

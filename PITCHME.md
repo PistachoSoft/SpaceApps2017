@@ -20,7 +20,7 @@
 - Datos provistos por ciudadanos
 
 Los que mejor conocen esos datos son los investigadores asociados
-a las misiones. Necesitan una herramienta que les permita colaborar para
+a las misiones. Proveemos una herramienta que les permite colaborar para
 dar visibilidad y recolectar datos de cobertura de las misiones e
 interaccion con otros vuelos.
 

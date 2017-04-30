@@ -6,8 +6,10 @@ const http = new Httpr({
   provider: new XHRProvider()
 })
 
+const host = 'http://localhost:8000'
+
 export function getFlights(range) {
-  return http.get('http://localhost:8000/position/flights', {
+  return http.get(`${host}/position/flights`, {
     date: JSON.stringify({
       $between: [range.startDate.valueOf(), range.endDate.valueOf()]
     })
@@ -22,25 +24,36 @@ export function getFlights(range) {
 }
 
 export function getFlightPoints(flightIds) {
-  return http.get('http://localhost:8000/position', {
-    flight_name: JSON.stringify({
-      $in: flightIds
+  if (!flightIds.length) {
+    return Promise.resolve([])
+  } else {
+    return http.get(`${host}/position`, {
+      flight_name: JSON.stringify({
+        $in: flightIds
+      })
     })
-  })
-  .then((response) => response.data)
+    .then((response) => response.data)
+  }
 }
 
 export function getPositionGeoJson(uri) {
-  return http.get(`http://localhost:8000${uri}/to_geojson`)
+  return http.get(`${host}${uri}/to_geojson`)
   .then((response) => response.data)
 }
 
-export function showHeader() {
-  return http.get('http://localhost:8000/position/count')
-  .then((response) => {
-    return response.data
-  })
+export function getPositions(points) {
+  return http.post(`${host}/position/geojson`, {}, points)
+  .then((response) => response.data)
 }
 
-export function retrieveCountRec() {
+export function getDocCount() {
+  return http.get(`${host}/position/count`)
+  .then((response) => response.data)
+}
+
+export function submitFlightData(data) {
+  return http.post(`${host}/position/csv`, {}, {
+    data
+  })
+  .then((response) => response.data)
 }

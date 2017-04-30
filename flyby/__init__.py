@@ -4,6 +4,7 @@ expose a JSON API to comprehensively search and filter over it.
 """
 import io
 import os
+import datetime
 import csv
 import json
 import configparser
@@ -14,7 +15,18 @@ from flask_potion.routes import ItemRoute, Route
 from flask_potion.contrib.peewee import PeeweeManager
 from flask import Flask
 
+
+def formatter(self, value):
+    try:
+        return {"$date": int(fields.calendar.timegm(value.timetuple()) * 1000)}
+    except:
+        return {"$date": int(
+            fields.calendar.timegm(
+                datetime.datetime.fromtimestamp(value).timetuple()) * 1000)}
+
+fields.Date.formatter = formatter
 logging.basicConfig()
+
 
 DB = peewee.SqliteDatabase('/tmp/db')
 
@@ -44,7 +56,7 @@ class Position(peewee.Model):
     source = peewee.TextField()
     weight = peewee.IntegerField(default=1)
     link = peewee.TextField()
-    date = peewee.IntegerField()
+    date = peewee.DateField()
     type = peewee.TextField()
     altitude = peewee.TextField()
     raw = peewee.TextField()
@@ -138,4 +150,6 @@ def run():
     api = Api(app, default_manager=PeeweeManager)
     api.add_resource(PositionResource)
     api.add_resource(SearchResource)
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=True,
+            host="127.0.0.1",
+            port=int(CONFIG['main'].get("port", 8000)))

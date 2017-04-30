@@ -11,7 +11,7 @@ from . import nasa_flights, opensky
 
 
 API_URL = 'http://{}:{}'.format(CONFIG['main'].get("host", "127.0.0.1"),
-                                CONFIG['main'].get("port", "5000"))
+                                CONFIG['main'].get("port", "8000"))
 
 
 def nasa_to_flyby():

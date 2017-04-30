@@ -27,11 +27,14 @@ class IWGFile(namedtuple("IWGFile", "fileo, name")):
 
 
 class IWG:
-    def __init__(self):
+    def __init__(self, link):
         session = Session()
         session.verify = False
         self.browser = RoboBrowser(session=session)
-        self.link = "https://asp-archive.arc.nasa.gov/"
+        if not link:
+            self.link = "https://asp-archive.arc.nasa.gov/"
+        else:
+            self.link = link
 
     def recurse_directory(self, directory, stopword):
         LOG.debug("Opening %s", directory)

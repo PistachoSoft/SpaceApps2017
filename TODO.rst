@@ -9,3 +9,4 @@ Extra
 -----
 
 - Add user registration
+- Parse HDF4 and HDF5

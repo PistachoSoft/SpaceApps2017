@@ -2,6 +2,7 @@
 Get flight data from multiple sources, normalize it and
 expose a JSON API to comprehensively search and filter over it.
 """
+import sys
 import io
 import os
 import datetime
@@ -150,6 +151,8 @@ def run():
 
     if not Search.table_exists():
         Search.create_table()
+    app.config["POTION_DEFAULT_PER_PAGE"] = sys.maxsize
+    app.config["POTION_MAX_PER_PAGE"] = sys.maxsize
 
     api = Api(app, default_manager=PeeweeManager)
     api.add_resource(PositionResource)

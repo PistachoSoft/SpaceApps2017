@@ -69,7 +69,10 @@ def opensky_to_flyby():
             requests.post("{}/position".format(API_URL), json=dates)
     req = requests.get("{}/position".format(API_URL))
     for elem in req.json():
-        _submit_date(elem["date"])
+        try:
+            _submit_date(int(elem["date"]["$date"]) / 1000)
+        except Exception as err:
+            LOG.exception(err)
 
 
 def openflights_to_flyby():
@@ -80,14 +83,17 @@ def openflights_to_flyby():
     airheads = ["ID", "name", "city", "country", "iata", "icao", "lat", "lon",
                 "alt", "tz", "dst", "type", "source"]
     routeheads = ["A", "AID", "so", "source", "de", "dest", "c", "s", "e"]
-    airports = csv.DictReader(open(sys.argv[1]), airheads)
-    routes = csv.DictReader(open(sys.argv[2]), routeheads)
+    airports = {a["ID"]: a for a in csv.DictReader(
+        open(sys.argv[1]), airheads)}
+    routes = list(csv.DictReader(open(sys.argv[2]), routeheads))
 
     results = []
     for route in routes:
-        if route['dest'] in airports and route['source'] in airports:
+        try:
             results.append([airports[route['source']],
                             airports[route['dest']]])
+        except:
+            pass
 
     for number, result_ in enumerate(results):
         for result in result_:
@@ -95,7 +101,11 @@ def openflights_to_flyby():
                      "raw": "",
                      "type": "route",
                      "source": "openflights",
-                     "date": str(0),
+                     "date": {"$date": 0},
                      "altitude": str(0),
+                     "link": "",
                      "latlon": json.dumps(result)}
-            requests.post('http://localhost:5000/positions', json=dates)
+            res = requests.post('http://localhost:8000/position', json=dates)
+            LOG.debug(res.status_code)
+            LOG.debug(res.text)
+

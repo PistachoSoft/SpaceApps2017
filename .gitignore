@@ -3,3 +3,4 @@
 .eggs
 *.sw?
 __pycache__
+flyby/static/

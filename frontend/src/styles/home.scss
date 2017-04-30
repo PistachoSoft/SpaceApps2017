@@ -1,0 +1,31 @@
+$min-sidebar-width: 300px;
+$date-range-height: 400px;
+
+.home {
+  display: flex;
+
+  .sidebar {
+    width: 20%;
+    min-width: $min-sidebar-width;
+
+    .date-range-input {
+      height: $date-range-height;
+    }
+
+    .flights-list {
+      height: calc(100% - #{$date-range-height});
+      overflow: auto;
+    }
+  }
+
+  .main {
+    position: relative;
+    width: 80%;
+    max-width: calc(100% - #{$min-sidebar-width});
+
+    .player {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

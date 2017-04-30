@@ -32,7 +32,10 @@ def nasa_to_flyby():
                 "raw": json.dumps(iwg),
                 "type": "plane",
                 "source": "nasa",
-                "date": str(arrow.get(iwg["System_Timestamp"]).timestamp),
+                "date": {
+                    "$date": arrow.get(
+                        iwg["System_Timestamp"]).timestamp * 1000},
+                "link": "",
                 "altitude": iwg['GPS_Altitude'],
                 "latlon": json.dumps([iwg['Latitude'], iwg['Longitude']])}
             LOG.debug("Requesting %s", dates)
@@ -45,8 +48,9 @@ def opensky_to_flyby():
     @lru_cache()
     def _submit_date(date):
         LOG.debug("Getting opensky data for %s", date)
-        osky = opensky.OpenSkyApi("dfrancosspaceapps", "spaceapps123").get_states(
-            datetime.datetime.fromtimestamp(date))
+        osky = opensky.OpenSkyApi(
+            "dfrancosspaceapps", "spaceapps123").get_states(
+                    datetime.datetime.fromtimestamp(date))
         if not osky:
             LOG.debug("No data found")
             return
@@ -57,7 +61,8 @@ def opensky_to_flyby():
                 "raw": json.dumps(element.__dict__),
                 "type": "plane",
                 "source": "opensky",
-                "date": str(date),
+                "link": "",
+                "date": {"$date": date * 1000},
                 "altitude": element.altitude,
                 "latlon": json.dumps([element.latitude, element.longitude])}
 

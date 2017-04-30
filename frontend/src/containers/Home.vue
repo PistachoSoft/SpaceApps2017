@@ -7,7 +7,7 @@
              @click="selectFlight(index)"
              class="flight-item"
              :class="{ active: !!selected[index] }">
-          <flight-view :flight="item"></flight-view>
+          <flight-view :flight="item" :selected="!!selected[index]"></flight-view>
         </div>
       </div>
     </div>

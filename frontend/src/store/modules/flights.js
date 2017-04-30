@@ -1,9 +1,9 @@
 import * as _ from 'lodash'
-import { getFlights, showHeader, getFlightPoints, getPositionGeoJson } from '../../services/data-service'
+import { getFlights, getDocCount, getFlightPoints, getPositions, submitFlightData } from '../../services/data-service'
 import { RECEIVE_FLIGHTS, RECEIVE_FLIGHT_COUNT, RECEIVE_FLIGHT_POINTS, SELECT_FLIGHT } from '../mutation-types'
 
 const state = {
-  count: "None",
+  count: 'Loading',
   selected: {},
   airborne: [],
   points: null
@@ -35,7 +35,7 @@ const actions = {
   },
 
   getFlightCount({commit}) {
-    showHeader().then((count) => {
+    getDocCount().then((count) => {
       commit(RECEIVE_FLIGHT_COUNT, {count})
     })
   },
@@ -44,10 +44,15 @@ const actions = {
     commit(SELECT_FLIGHT, {index})
 
     getFlightPoints(Object.keys(state.selected).map((index) => state.airborne[index]))
-    .then((points) => Promise.all(points.map(({$uri}) => getPositionGeoJson($uri))))
+    // .then((points) => Promise.all(points.map(({$uri}) => getPositionGeoJson($uri))))
+    .then((points) => getPositions(points))
     .then((points) => {
       commit(RECEIVE_FLIGHT_POINTS, {points})
     })
+  },
+
+  submitFlightData({commit}, data) {
+    submitFlightData(data)
   }
 }
 

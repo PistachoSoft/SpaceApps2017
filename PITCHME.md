@@ -29,14 +29,14 @@ interaccion con otros vuelos.
 # Objetivos
 
 - Múltiples fuentes de datos
-- Extensible
-- Fuente de datos por crowdsourcing (¿Y si los datos no son procesables?)
-- Visual, pero útil
+- Fuente de datos por crowdsourcing 
 - Anotaciones colaborativas, además de fuentes de datos
-  (peticiones de datos, comentarios...)
-- Datos abiertos
-+ Modelo de datos común para todas las fuentes
-+ Formato GEOJson
+- Datos abiertos, formatos estandar (geoJSON, JSONSchema)
+- Modelo de datos común para todas las fuentes
+
+---
+
+.. image:: https://raw.githubusercontent.com/PistachoSoft/SpaceApps2017/8dd5d0129e45a4f57fbbb43cdc7eae17e23af790/doc/diagram.png
 
 ---
 

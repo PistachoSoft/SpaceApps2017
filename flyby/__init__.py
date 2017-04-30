@@ -116,6 +116,18 @@ class PositionResource(ModelResource):
         # pylint: disable=no-self-use
         return flight.to_geojson()
 
+    @Route.POST('/geojson')
+    def geojson(self, data: fields.String()):
+        def filter_decimals(latlon):
+            """ filter decimals """
+            lat, lon = json.loads(latlon)
+            print(lat, lon)
+            return round(float(lat), 8), round(float(lon), 8)
+
+        data = json.loads(data)
+        return list({filter_decimals(Position.get(id=elem["$id"]).latlon)
+                    for elem in data})
+
     @Route.POST('/csv')
     def from_csv(self, data: fields.String()):
         return Position.from_csv(data)
@@ -132,6 +144,7 @@ class PositionResource(ModelResource):
         # pylint: disable=missing-docstring
         model = Position
         include_fields = ["id"]
+        include_id = True
 
 
 class SearchResource(ModelResource):

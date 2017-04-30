@@ -7,7 +7,7 @@
 # Problematica
 
 - Falta de visibilidad de las misiones airborne de la nasa.
-- Falta de accesibilidad a los DATOS (no son opendata!)
+- Falta de accesibilidad a los datos
 - Probablemente dificultad de conversión e interpretación de datos
 + Datos subjetivos (dependientes del objetivo de la misión)
 

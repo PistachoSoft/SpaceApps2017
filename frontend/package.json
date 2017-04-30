@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "httpr": "1.0.0",
-    "httpr-provider-xhr": "1.0.0-rc2",
+    "httpr-provider-xhr": "1.0.0-rc5",
     "leaflet": "1.0.3",
     "leaflet.heat": "0.2.0",
     "lodash": "4.17.4",

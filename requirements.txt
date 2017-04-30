@@ -2,3 +2,5 @@ requests
 peewee
 flask
 flask_potion
+arrow
+robobrowser

@@ -123,6 +123,10 @@ class PositionResource(ModelResource):
     def count(self):
         return Position.select().count()
 
+    @Route.GET('/flights')
+    def flights(self):
+        return list({a.flight_name for a in Position.select()})
+
     class Meta:
         # pylint: disable=missing-docstring
         model = Position

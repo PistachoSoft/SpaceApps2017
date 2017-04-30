@@ -40,6 +40,8 @@ class Position(peewee.Model):
     latlon = peewee.TextField()
     flight_name = peewee.TextField()
     source = peewee.TextField()
+    weight = peewee.IntegerField(default=1)
+    link = peewee.TextField()
     date = peewee.TextField()
     type = peewee.TextField()
     altitude = peewee.TextField()

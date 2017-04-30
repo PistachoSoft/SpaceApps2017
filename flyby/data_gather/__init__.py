@@ -67,12 +67,15 @@ def opensky_to_flyby():
                 "latlon": json.dumps([element.latitude, element.longitude])}
 
             requests.post("{}/position".format(API_URL), json=dates)
-    req = requests.get("{}/position".format(API_URL))
-    for elem in req.json():
-        try:
-            _submit_date(int(elem["date"]["$date"]) / 1000)
-        except Exception as err:
-            LOG.exception(err)
+    if len(sys.argv) > 1:
+        _submit_date(int(sys.argv[1]))
+    else:
+        req = requests.get("{}/position".format(API_URL))
+        for elem in req.json():
+            try:
+                _submit_date(int(elem["date"]["$date"]) / 1000)
+            except Exception as err:
+                LOG.exception(err)
 
 
 def openflights_to_flyby():
@@ -108,4 +111,3 @@ def openflights_to_flyby():
             res = requests.post('http://localhost:8000/position', json=dates)
             LOG.debug(res.status_code)
             LOG.debug(res.text)
-

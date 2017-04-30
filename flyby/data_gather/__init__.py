@@ -14,6 +14,11 @@ API_URL = 'http://{}:{}'.format(CONFIG['main'].get("host", "127.0.0.1"),
                                 CONFIG['main'].get("port", "8000"))
 
 
+def adjust(position):
+    """ Round to 8 numbers """
+    return round(float(position), 8)
+
+
 def nasa_to_flyby():
     link = None
     if len(sys.argv) > 1:
@@ -29,7 +34,6 @@ def nasa_to_flyby():
 
             dates = {
                 "flight_name": name,
-                "raw": json.dumps(iwg),
                 "type": "plane",
                 "source": "nasa",
                 "date": {
@@ -37,7 +41,8 @@ def nasa_to_flyby():
                         iwg["System_Timestamp"]).timestamp * 1000},
                 "link": "",
                 "altitude": iwg['GPS_Altitude'],
-                "latlon": json.dumps([iwg['Latitude'], iwg['Longitude']])}
+                "latlon": json.dumps([adjust(iwg['Latitude']),
+                                      adjust(iwg['Longitude'])])}
             LOG.debug("Requesting %s", dates)
             result = requests.post("{}/position".format(API_URL), json=dates)
             LOG.debug(result.status_code)
@@ -58,13 +63,13 @@ def opensky_to_flyby():
         for element in osky.states:
             dates = {
                 "flight_name": element.callsign,
-                "raw": json.dumps(element.__dict__),
                 "type": "plane",
                 "source": "opensky",
                 "link": "",
                 "date": {"$date": date * 1000},
                 "altitude": element.altitude,
-                "latlon": json.dumps([element.latitude, element.longitude])}
+                "latlon": json.dumps([adjust(element.latitude),
+                                      adjust(element.longitude)])}
 
             requests.post("{}/position".format(API_URL), json=dates)
     if len(sys.argv) > 1:
@@ -101,13 +106,13 @@ def openflights_to_flyby():
     for number, result_ in enumerate(results):
         for result in result_:
             dates = {"flight_name": "route{}".format(number),
-                     "raw": "",
                      "type": "route",
                      "source": "openflights",
                      "date": {"$date": 0},
                      "altitude": str(0),
                      "link": "",
-                     "latlon": json.dumps(result)}
+                     "latlon": json.dumps(adjust(result[0]),
+                                          adjust(result[1]))}
             res = requests.post('http://localhost:8000/position', json=dates)
             LOG.debug(res.status_code)
             LOG.debug(res.text)

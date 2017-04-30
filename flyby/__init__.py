@@ -9,8 +9,8 @@ import json
 import configparser
 import logging
 import peewee
-from flask_potion import Api, ModelResource
-from flask_potion.routes import ItemRoute
+from flask_potion import Api, ModelResource, fields
+from flask_potion.routes import ItemRoute, Route
 from flask_potion.contrib.peewee import PeeweeManager
 from flask import Flask
 
@@ -53,9 +53,9 @@ class Position(peewee.Model):
         # pylint: disable=missing-docstring, too-few-public-methods
         database = DB
 
-    def from_csv(self, data):
+    @staticmethod
+    def from_csv(data):
         """ Import Data from CSV """
-        # pylint: disable=no-self-use
         dataio = io.StringIO()
         dataio.write(data)
         dataio.seek(0)
@@ -67,11 +67,12 @@ class Position(peewee.Model):
                 'latlon': json.dumps([row['lat'], row['lon']]),
                 'flight_name': row['name'],
                 'source': "user",
+                'raw': json.dumps(row),
                 'weight': row['weight'],
                 'link': row['link'],
                 'date': row['date'],
                 'type': 'flight',
-                'altitude': row['flight']
+                'altitude': row['altitude']
             }
             Position.create(**result)
 
@@ -102,6 +103,10 @@ class PositionResource(ModelResource):
         # pylint: disable=no-self-use
         return flight.to_geojson()
 
+    @Route.POST('/csv')
+    def from_csv(self, data: fields.String()):
+        return Position.from_csv(data)
+
     class Meta:
         # pylint: disable=missing-docstring
         model = Position
@@ -129,4 +134,4 @@ def run():
     api = Api(app, default_manager=PeeweeManager)
     api.add_resource(PositionResource)
     api.add_resource(SearchResource)
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=8000)

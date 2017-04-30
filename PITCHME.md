@@ -8,8 +8,7 @@
 
 - Falta de visibilidad de las misiones airborne
 - Falta de accesibilidad a los datos
-- Probablemente dificultad de conversión e interpretación de datos
- - Datos dependientes del objetivo de la misión
+- Dificultad de conversión e interpretación de datos
 
 
 ---

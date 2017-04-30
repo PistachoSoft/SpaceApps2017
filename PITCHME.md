@@ -36,7 +36,7 @@ interaccion con otros vuelos.
 
 ---
 
-.. image:: https://raw.githubusercontent.com/PistachoSoft/SpaceApps2017/8dd5d0129e45a4f57fbbb43cdc7eae17e23af790/doc/diagram.png
+![Captura](https://raw.githubusercontent.com/PistachoSoft/SpaceApps2017/8dd5d0129e45a4f57fbbb43cdc7eae17e23af790/doc/diagram.png)
 
 ---
 

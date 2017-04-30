@@ -4,8 +4,8 @@ import 'leaflet.heat'
 export default class {
   constructor(element) {
     this._map = L.map(element, {
-      center: [41.659631, -0.907582],
-      zoom: 10,
+      center: [34.0201812, -118.69192],
+      zoom: 4,
       maxZoom: 13
     })
 

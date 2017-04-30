@@ -45,7 +45,18 @@ const actions = {
 
     getFlightPoints(Object.keys(state.selected).map((index) => state.airborne[index]))
     // .then((points) => Promise.all(points.map(({$uri}) => getPositionGeoJson($uri))))
-    .then((points) => getPositions(points))
+    // .then((points) => getPositions(points))
+    .then((points) => {
+      return points.map(({latlon}) => {
+        const [lat, lng] = JSON.parse(latlon)
+
+        return [
+          lat,
+          lng,
+          0.2
+        ]
+      })
+    })
     .then((points) => {
       commit(RECEIVE_FLIGHT_POINTS, {points})
     })

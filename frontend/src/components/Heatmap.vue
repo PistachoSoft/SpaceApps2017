@@ -18,9 +18,7 @@ export default {
   },
   watch: {
     points(values) {
-      this.map && this.map.setHeatPoints(values.map(({geometry: {coordinates: [lat, lng]}}) => [
-        lat, lng, 0.2
-      ]))
+      this.map && this.map.setHeatPoints(values)
     }
   }
 }

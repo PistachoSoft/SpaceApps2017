@@ -24,12 +24,16 @@ export function getFlights(range) {
 }
 
 export function getFlightPoints(flightIds) {
-  return http.get(`${host}/position`, {
-    flight_name: JSON.stringify({
-      $in: flightIds
+  if (!flightIds.length) {
+    return Promise.resolve([])
+  } else {
+    return http.get(`${host}/position`, {
+      flight_name: JSON.stringify({
+        $in: flightIds
+      })
     })
-  })
-  .then((response) => response.data)
+    .then((response) => response.data)
+  }
 }
 
 export function getPositionGeoJson(uri) {

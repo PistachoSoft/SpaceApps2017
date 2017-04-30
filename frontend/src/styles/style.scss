@@ -1,0 +1,24 @@
+@import "mixins";
+
+$header-height: 50px;
+
+html, body, #app {
+  margin: 0;
+  @include full-viewport;
+}
+
+header {
+  height: $header-height;
+  line-height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#app {
+  height: calc(100% - #{$header-height});
+  width: 100%;
+}
+
+.home {
+  @include full-viewport;
+}

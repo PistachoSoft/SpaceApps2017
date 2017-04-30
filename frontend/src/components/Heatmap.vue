@@ -7,8 +7,21 @@ import MapService from '../services/map-service'
 
 export default {
   name: 'heatmap',
-  mounted: function() {
-    new MapService(this.$refs.map)
+  data() {
+    return {
+      map: null
+    }
+  },
+  props: ['points'],
+  mounted() {
+    this.map = new MapService(this.$refs.map)
+  },
+  watch: {
+    points(values) {
+      this.map && this.map.setHeatPoints(values.map(({geometry: {coordinates: [lat, lng]}}) => [
+        lat, lng, 0.2
+      ]))
+    }
   }
 }
 </script>

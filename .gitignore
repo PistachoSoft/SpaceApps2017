@@ -4,3 +4,7 @@
 *.sw?
 __pycache__
 flyby/static/
+flyby/bin
+flyby/lib
+flyby/pip-selfcheck.json
+flyby/pyvenv.cfg

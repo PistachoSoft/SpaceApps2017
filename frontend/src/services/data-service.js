@@ -6,13 +6,41 @@ const http = new Httpr({
   provider: new XHRProvider()
 })
 
-export function getAirborne() {
-  return Promise.resolve(_.range(1, 100).map((value) => `Flight ${value}`))
+export function getFlights(range) {
+  return http.get('http://localhost:8000/position/flights', {
+    date: JSON.stringify({
+      $between: [range.startDate.valueOf(), range.endDate.valueOf()]
+    })
+  })
+  .then((response) => {
+    if (response.status >= 400 || !response.data.length) {
+      return _.range(1, 100).map((value) => `Flight ${value}`)
+    } else {
+      return response.data
+    }
+  })
+}
+
+export function getFlightPoints(flightIds) {
+  return http.get('http://localhost:8000/position', {
+    flight_name: JSON.stringify({
+      $in: flightIds
+    })
+  })
+  .then((response) => response.data)
+}
+
+export function getPositionGeoJson(uri) {
+  return http.get(`http://localhost:8000${uri}/to_geojson`)
+  .then((response) => response.data)
 }
 
 export function showHeader() {
-  http.get('http://localhost:8000/position')
+  return http.get('http://localhost:8000/position/count')
   .then((response) => {
-    console.log(response.headers)
-  });
+    return response.data
+  })
+}
+
+export function retrieveCountRec() {
 }

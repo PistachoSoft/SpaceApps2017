@@ -3,14 +3,16 @@
     <div class="sidebar">
       <date-range-input :onChange="getFlights"></date-range-input>
       <div class="flights-list">
-        <div v-for="item in items"
-             @click="selectFlight(item)">
-          {{item}} {{item === selected}}
+        <div v-for="(item, index) in items"
+             @click="selectFlight(index)"
+             class="flight-item"
+             :class="{ active: !!selected[index] }">
+          <flight-view :flight="item"></flight-view>
         </div>
       </div>
     </div>
     <div class="main">
-      <heatmap></heatmap>
+      <heatmap :points="points"></heatmap>
       <div class="player"></div>
     </div>
   </div>
@@ -22,10 +24,7 @@ import { DateRange } from 'vue-date-range'
 import moment from 'moment'
 import Heatmap from '../components/Heatmap.vue'
 import DateRangeInput from '../components/DateRangeInput.vue'
-
-import { showHeader } from '../services/data-service'
-
-showHeader()
+import FlightView from '../components/FlightView.vue'
 
 export default {
   name: 'home',
@@ -39,11 +38,13 @@ export default {
   },
   components: {
     Heatmap,
-    DateRangeInput
+    DateRangeInput,
+    FlightView
   },
   computed: mapGetters({
     items: 'getFlights',
-    selected: 'getSelectedFlight'
+    selected: 'getSelectedFlights',
+    points: 'getFlightPoints'
   }),
   methods: mapActions([
     'selectFlight',

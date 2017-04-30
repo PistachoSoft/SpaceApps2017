@@ -1,5 +1,5 @@
 $min-sidebar-width: 300px;
-$date-range-height: 400px;
+$date-range-height: 50px;
 
 .home {
   display: flex;
@@ -10,11 +10,32 @@ $date-range-height: 400px;
 
     .date-range-input {
       height: $date-range-height;
+      border: 1px solid black;
+      border-top: none;
+      border-bottom: none;
     }
 
     .flights-list {
       height: calc(100% - #{$date-range-height});
       overflow: auto;
+      border: 1px solid black;
+
+      .flight-item {
+        height: 30px;
+        line-height: 20px;
+        padding: 5px;
+        box-sizing: border-box;
+        border-bottom: 1px solid black;
+        text-align: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.active {
+          background-color: #efefef;
+        }
+      }
     }
   }
 

@@ -5,6 +5,7 @@ $header-height: 50px;
 html, body, #app {
   margin: 0;
   @include full-viewport;
+  font-family: 'Avenir';
 }
 
 header {
@@ -14,11 +15,7 @@ header {
   box-sizing: border-box;
 }
 
-#app {
-  height: calc(100% - #{$header-height});
-  width: 100%;
-}
-
 .home {
   @include full-viewport;
+  height: calc(100% - #{$header-height});
 }

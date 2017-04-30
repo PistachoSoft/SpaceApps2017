@@ -1,6 +1,35 @@
+$date-range-height: 50px;
+
 .date-range-input {
+  .input {
+    line-height: $date-range-height;
+    text-align: center;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #efefef;
+    }
+  }
 
   .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
 
+    .calendar-wrapper {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      width: 400px;
+      display: inline-block;
+      border: 1px solid black;
+    }
   }
 }

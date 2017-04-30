@@ -15,6 +15,9 @@ import moment from 'moment'
 
 export default {
   name: 'date-range-input',
+  props: [
+    'onChange'
+  ],
   data() {
     return {
       range: {
@@ -26,6 +29,8 @@ export default {
   methods: {
     handleChange(range) {
       console.log(range)
+
+      this.onChange(range)
     }
   },
   components: {

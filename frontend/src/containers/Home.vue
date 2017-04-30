@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="sidebar">
-      <date-range-input></date-range-input>
+      <date-range-input :onChange="getFlights"></date-range-input>
       <div class="flights-list">
         <div v-for="item in items"
              @click="selectFlight(item)">
@@ -22,6 +22,10 @@ import { DateRange } from 'vue-date-range'
 import moment from 'moment'
 import Heatmap from '../components/Heatmap.vue'
 import DateRangeInput from '../components/DateRangeInput.vue'
+
+import { showHeader } from '../services/data-service'
+
+showHeader()
 
 export default {
   name: 'home',

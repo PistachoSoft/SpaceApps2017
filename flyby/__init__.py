@@ -122,7 +122,7 @@ class SearchResource(ModelResource):
 
 def run():
     """ Main entry point """
-    app = Flask(__name__)
+    app = Flask(__name__, static_path='')
     app.config['DATABASE'] = 'sqlite://'
     # pylint: disable=no-member
     if not Position.table_exists():

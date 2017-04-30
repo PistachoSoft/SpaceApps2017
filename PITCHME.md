@@ -9,7 +9,7 @@
 - Falta de visibilidad de las misiones airborne de la nasa.
 - Falta de accesibilidad a los datos
 - Probablemente dificultad de conversión e interpretación de datos
-+ Datos subjetivos (dependientes del objetivo de la misión)
+ - Datos dependientes del objetivo de la misión
 
 
 ---
@@ -17,9 +17,9 @@
 # Soluciones
 
 - CIENCIA CIUDADANA!
-+ ¿Quien tiene acceso a esos datos?
+ - ¿Quien tiene acceso a esos datos?
 - Datos provistos por la población general
-+ ¡DRONES!
+ - ¡DRONES!
 
 Los que mejor conocen esos datos son los investigadores asociados
 a las misiones. Necesitan una herramienta que les permita colaborar para

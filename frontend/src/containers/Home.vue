@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <div class="sidebar">
-      <div class="date-range-input">
-        <date-range lang="en" :range="range" @change="getFlights" :first-day-of-week="1"></date-range>
-      </div>
+      <date-range-input></date-range-input>
       <div class="flights-list">
         <div v-for="item in items"
              @click="selectFlight(item)">
@@ -23,6 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 import { DateRange } from 'vue-date-range'
 import moment from 'moment'
 import Heatmap from '../components/Heatmap.vue'
+import DateRangeInput from '../components/DateRangeInput.vue'
 
 export default {
   name: 'home',
@@ -36,7 +35,7 @@ export default {
   },
   components: {
     Heatmap,
-    DateRange
+    DateRangeInput
   },
   computed: mapGetters({
     items: 'getFlights',

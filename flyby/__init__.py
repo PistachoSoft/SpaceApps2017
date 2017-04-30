@@ -2,7 +2,9 @@
 Get flight data from multiple sources, normalize it and
 expose a JSON API to comprehensively search and filter over it.
 """
+import io
 import os
+import csv
 import json
 import configparser
 import logging
@@ -50,6 +52,28 @@ class Position(peewee.Model):
     class Meta:
         # pylint: disable=missing-docstring, too-few-public-methods
         database = DB
+
+    def from_csv(self, data):
+        """ Import Data from CSV """
+        # pylint: disable=no-self-use
+        dataio = io.StringIO()
+        dataio.write(data)
+        dataio.seek(0)
+        reader = csv.DictReader(
+            dataio, ["lat", "lon", "weight", "link", "date", "altitude",
+                     "name"])
+        for row in reader:
+            result = {
+                'latlon': json.dumps([row['lat'], row['lon']]),
+                'flight_name': row['name'],
+                'source': "user",
+                'weight': row['weight'],
+                'link': row['link'],
+                'date': row['date'],
+                'type': 'flight',
+                'altitude': row['flight']
+            }
+            Position.create(**result)
 
     def to_geojson(self):
         """ Convert to geojson format """

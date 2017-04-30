@@ -24,4 +24,4 @@ This project covers those problems and more by:
 
 Right now, the following data flow is implemented:
 
-.. image:: doc/diagram.png
+.. image:: https://raw.githubusercontent.com/PistachoSoft/SpaceApps2017/8dd5d0129e45a4f57fbbb43cdc7eae17e23af790/doc/diagram.png

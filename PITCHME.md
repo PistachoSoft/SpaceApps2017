@@ -18,7 +18,6 @@
 - Ciencia ciudadana
  - Colaboración con los investigadores responsables 
 - Datos provistos por ciudadanos
- - ¡DRONES!
 
 Los que mejor conocen esos datos son los investigadores asociados
 a las misiones. Necesitan una herramienta que les permita colaborar para

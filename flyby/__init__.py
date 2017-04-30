@@ -44,7 +44,7 @@ class Position(peewee.Model):
     source = peewee.TextField()
     weight = peewee.IntegerField(default=1)
     link = peewee.TextField()
-    date = peewee.TextField()
+    date = peewee.IntegerField()
     type = peewee.TextField()
     altitude = peewee.TextField()
     raw = peewee.TextField()
